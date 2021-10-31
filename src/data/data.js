@@ -21,4 +21,22 @@ export const profiles = [
     text1: "1.00 ICP",
     text2: "Ibrahim Lukman",
   },
+];
+
+export const data = [
+  {
+    id: 1,
+    date: "OCT 10",
+    time: "11:54"
+  },
+  {
+    id: 2,
+    date: "OCT 10",
+    time: "11:54"
+  },
+  {
+    id: 3,
+    date: "OCT 10",
+    time: "11:54"
+  },
 ]

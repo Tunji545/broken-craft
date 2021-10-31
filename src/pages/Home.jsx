@@ -9,6 +9,8 @@ import { texts } from "../data/data"
 import Person2 from "../assets/person2.png"
 import { ReactComponent as Line } from "../assets/line.svg"
 import { profiles } from "../data/data"
+import { data } from "../data/data"
+import { ReactComponent as Circles } from "../assets/circles.svg"
 
 const root = {
   backgroundColor: "#f4f4f4",
@@ -35,6 +37,12 @@ const secondGrid = {
     fontWeight: 500
   }
 }
+
+const note = (
+  <>
+    By placing this bid, we reserve funds from your ICP account till the end of the auction. This is to confirm the seriousness of your intentions. <strong>We will refund if you are outbid.</strong>
+  </>
+)
 
 function Home() {
   return (
@@ -87,7 +95,11 @@ function Home() {
             component="img"
             alt=""
             src={Person2}
+            mb={theme.spacing(10)}
           />
+          <Box textAlign="center">
+            <Circles />
+          </Box>
         </Grid>
         <Grid item xs={12} sm={4}>
           <Box mt={theme.spacing(18.75)}>
@@ -118,26 +130,44 @@ function Home() {
           >
             BIDDING HISTORY
           </Typography>
-          {profiles.map(profile => (
-            <Box key={profile.id}>
-              <Box sx={{float: "left", mr: theme.spacing(1)}}>
-                {profile.person} 
-              </Box>
-              <Box>
-                <Typography 
-                  sx={{fontWeight: 700, fontFamily: "Montserrat"}}
-                >
-                  {profile.text1}
-                </Typography>
-                <Typography 
-                  sx={{fontFamily: "Montserrat"}}
-                >
-                  {profile.text2}
-                </Typography>
-                <Divider sx={{clear: "both"}} />
-              </Box>
-            </Box>
-          ))}
+          <Grid container>
+            <Grid item xs={9}>
+              {profiles.map(profile => (
+                <Box key={profile.id}>
+                  <Box sx={{float: "left", mr: theme.spacing(1)}}>
+                    {profile.person} 
+                  </Box>
+                  <Box sx={{position: "relative", top: 5}}>
+                    <Typography 
+                      sx={{fontWeight: 700, fontFamily: "Montserrat"}}
+                    >
+                      {profile.text1}
+                    </Typography>
+                    <Typography 
+                      sx={{fontFamily: "Montserrat"}}
+                    >
+                      {profile.text2}
+                    </Typography>
+                    <Divider sx={{clear: "both"}} />
+                  </Box>
+                </Box>
+              ))}
+            </Grid>
+            <Grid item xs={3}>
+              {data.map(date => (
+                <Box marginBottom={theme.spacing(2)}>
+                  <Typography variant="body1" sx={{fontSize: 14}}>{date.date}</Typography>
+                  <Typography 
+                    variant="subtitle1" 
+                    sx={{fontSize: 14}}
+                  >
+                    {date.time}
+                  </Typography>
+                </Box>
+              ))}
+            </Grid>
+            <Typography mt={theme.spacing(6.75)} variant="subtitle1">{note}</Typography>
+          </Grid>
         </Grid>
       </Grid>
     </>
