@@ -1,25 +1,27 @@
 import React from 'react'
-import { AppBar, Grid, Toolbar, Typography } from '@mui/material';
+import { AppBar, Divider, Grid, InputBase, Toolbar, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 import { theme } from "../theme/theme";
 import { ReactComponent as Ball } from "../assets/logo.svg"
 import { ReactComponent as Person } from "../assets/person.svg"
 import { Box } from '@mui/system';
+import SearchIcon from '@mui/icons-material/Search';
 
 const root = {
-  backgroundColor: "#efefef",
+  backgroundColor: "#f4f4f4",
   color: "#000000",
   paddingLeft: theme.spacing(5),
   paddingRight: theme.spacing(8.125),
   "& a": {
-    textDecoration: "none"
+    textDecoration: "none",
+    color: "#000000",
   }
 }
 
 function Navbar() {
 
   return (
-    <AppBar sx={root} position="static">
+    <AppBar sx={root} position="static" elevation={0}>
       <Toolbar>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
@@ -45,6 +47,12 @@ function Navbar() {
             <Link to="/community">
               <Typography variant="h6" component="span">Creator Community</Typography>
             </Link>
+            <InputBase 
+              startAdornment={<SearchIcon fontSize="small" />}
+              sx={{position: "relative", top: 5, marginLeft: theme.spacing(2), width: 100, opacity: 0.6}}
+              size="small"
+              
+            />
           </Grid>
           <Grid item>
               <Box  sx={{float: "left"}} mr={1.5}>
@@ -59,6 +67,7 @@ function Navbar() {
           </Grid>
         </Grid>
       </Toolbar>
+      <Divider />
     </AppBar>
   )
 }
