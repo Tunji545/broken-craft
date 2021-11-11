@@ -4,13 +4,14 @@ import { Divider, Grid, Typography } from '@mui/material'
 import { theme } from "../theme/theme"
 import Button from "../reusables/Button.jsx"
 import bgImage from "../assets/background.png"
-import Foreground from "../assets/foreground.png"
 import { texts } from "../data/data"
 import Person2 from "../assets/person2.png"
-import { ReactComponent as Line } from "../assets/line.svg"
+import { Line } from "../assets/Line.js"
 import { profiles } from "../data/data"
 import { data } from "../data/data"
 import { ReactComponent as Circles } from "../assets/circles.svg"
+import Craft from "../assets/craft.png";
+import {ReactComponent as Arrow} from "../assets/arrow-right.svg"
 
 const root = {
   backgroundColor: "#f4f4f4",
@@ -37,6 +38,38 @@ const secondGrid = {
     fontWeight: 500
   }
 }
+const craft = {
+  position: "relative", 
+  top: 77, 
+  right: 100,
+  paddingBottom: theme.spacing(9)
+}
+const box = {
+  position: "absolute",
+  right: 340,
+  bottom: 90,
+  width: theme.spacing(38.75),
+  height: theme.spacing(10),
+  backgroundColor: theme.palette.primary.main,
+  background: "linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), rgba(255, 255, 255, 0.54)",
+  backdropFilter: "blur(4px)",
+  borderRadius: "10px",
+  zIndex: 6,
+  color: theme.palette.secondary.main,
+  fontWeight: 500,
+  padding: theme.spacing(1)
+};
+
+const box2 = {
+  backgroundColor: theme.palette.primary.main, 
+  color: theme.palette.secondary.main,
+  display: "flex",
+  "& .MuiButton-contained": {
+    backgroundColor: "#B59D23",
+    fontSize: "12px",
+    marginLeft: theme.spacing(5),
+  }
+}
 
 const note = (
   <>
@@ -61,20 +94,43 @@ function Home() {
                 text="Upload  Art" 
                 size="medium" 
                 color="secondary" 
-                sx={{fontSize: "Sacramento"}} 
-                endIcon={<Line sx={{color: "#000"}} />}
+                sx={{fontFamily: "Sacramento", fontWeight: 700}} 
+                endIcon={<Line color="#000" />}
               />
             </Box>
           </Grid>
-          <Grid item xs={12} sm={6} sx={{backgroundColor: "#000", padding: theme.spacing(2)}}>
+          <Grid item xs={12} sm={6} sx={{backgroundColor: "#000", padding: theme.spacing(3.5)}}>
             <Box sx={background}>
-            <Box
-              component="img"
-              alt=""
-              src={Foreground}
-              zIndex={4}
-              sx={{position: "relative", top: 35, right: 100}}
-            />
+              <Box component="span" position="absolute" right={100} top="50%">
+                <Arrow />
+              </Box>
+              <Box position="relative">
+                <Box
+                  component="img"
+                  alt=""
+                  src={Craft}
+                  zIndex={4}
+                  sx={craft}
+                  border="20px solid #fff"
+                />
+                <Box sx={box}>
+                  <Box sx={{display: "flex", justifyContent: "space-between", paddingBottom: theme.spacing(2)}}>
+                    <Typography variant="h6" component="span">Current Bid</Typography>
+                    <Typography variant="h6" component="span">0.24ICP</Typography>
+                  </Box>
+                  <Box sx={{display: "flex", justifyContent: "space-between"}}>
+                    <Typography variant="h6" component="span">Ends in:</Typography>
+                    <Typography variant="h6" component="span">10:09:23</Typography>
+                  </Box>
+                </Box>
+                <Box position="relative" bottom={15} right={50} sx={box2}>
+                  <Box>
+                    <Typography variant="h6">ICP TOKENS</Typography>
+                    <Typography variant="h6">Dfinity ICP Tokens</Typography>
+                  </Box>
+                  <Button text="PLACE BID" />
+                </Box>
+              </Box>
             </Box>
           </Grid>
         </Grid>
@@ -120,7 +176,8 @@ function Home() {
           <Button 
             text="PLACE A NEW BID" 
             size="large" 
-            endIcon={<Line />} 
+            endIcon={<Line color="#fff"  />} 
+            sx={{paddingRight: 25, ".MuiButton-endIcon": {position: "absolute", right: 25}}}
           />
           <Typography 
             variant="6" 
